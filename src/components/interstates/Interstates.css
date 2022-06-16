@@ -1,0 +1,17 @@
+/* display each interstate with the interstate logo in a list
+include hover for each */
+
+.interstates {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.interstate {
+    background-color: rgb(160, 255, 223);
+    border-color: azure;
+    color: black;
+    padding: 0.5rem;
+    margin: 0.5rem
+}
