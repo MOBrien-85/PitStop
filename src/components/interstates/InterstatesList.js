@@ -11,7 +11,7 @@ for MVP maybe it can just take you to a page displaying all exits in their thumb
  */
 import { Interstate } from "./Interstate"
 import { useEffect, useState } from "react"
-
+import "./Interstates.css"
 
 export const InterstatesList = () => {
     const [interstates, setInterstates] = useState([])

@@ -4,13 +4,14 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Exit } from "../exits/Exit"
+import "./Interstates.css"
 
 
 
 // export interstatePage
 export const InterstatePage = () => {
     const {interstateId} = useParams()
-    const [interstate, displayInterstate] = useState({})
+    const [interstate, displayInterstate] = useState({exits: []})
     
 
 
@@ -43,10 +44,15 @@ useEffect(
 
 
 
+// here is where i will, like for profile display of average scores, do the same formula for the overall rating for each exit
+// using the overall rating from each user for that exit...
+
 // JSX below
 
-return <section className="interstate">
+return <>
+<section className="interstate_page">
     <header className="interstate_header">{interstate.name}</header>
+    
         <article className="exits">
             {
                 interstate.exits.map(exit => <Exit key={`exit--${exit.id}`}
@@ -58,6 +64,7 @@ return <section className="interstate">
         </article>
 
     </section>
+</>
 
 
     }

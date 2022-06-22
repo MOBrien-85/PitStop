@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { getCurrentUserFetch, saveUserProfileFetch } from "../ApiManager"
+import { useNavigate, useParams } from "react-router-dom"
 import "./Customers.css"
 
 /* this page will fetch each user depending on who is signed in
@@ -7,18 +9,22 @@ in thumbnail form - similar to the exit thumbnails but it will be specific to th
 and on the bottom of the box there will be edit and delete btns
 */
 
-export const CustomerProfile = () => {
+export const ProfileUpdate = () => {
+    const navigate = useNavigate()
+    const {userId} = useParams()
     // TODO: Provide initial state for profile
     const [profile, updateProfile] = useState({
+        userId: 0,
         Name: "",
         email: "",
-        userId: 0
     })
+
+    
+
+    const [feedback, setFeedback] = useState("")
 
     const localPitStopUser = localStorage.getItem("pitStop_user")
     const pitStopUserObject = JSON.parse(localPitStopUser)
-
-    const [feedback, setFeedback] = useState("")
 
 
     useEffect(() => {
@@ -29,35 +35,22 @@ export const CustomerProfile = () => {
     }, [feedback])
 
     // TODO: Get employee profile info from API and update state
-    useEffect(() => {
-        fetch(`http://localhost:8088/users?userId=${pitStopUserObject.id}`)
-            .then(response => response.json())
-            .then((data) => {
-                const userObject = data[0]
-                updateProfile(userObject)
-            })
-    },
+    useEffect(
+        () => {
+            getCurrentUserFetch(userId).then(updateProfile)
+        },
         []
     )
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
+        return saveUserProfileFetch(profile)
+                .then(
+                    () => {
+                        navigate(`/profile/${pitStopUserObject?.id}`)
+                    }
+                )
 
-        /*
-            TODO: Perform the PUT fetch() call here to update the profile.
-            Navigate user to home page when done.
-        */
-        fetch(`http://localhost:8088/users/${profile.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(profile)
-        })
-            .then(response => response.json())
-            .then(() => {
-                setFeedback("User profile successfully saved")
-            })
     }
 
     return (<>

@@ -61,3 +61,208 @@ MORE STRETCH GOALS:
 
     
 */
+
+import { useState, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+
+
+export const ReviewForm = () => {
+    const { exitId } = useParams()
+    const [exit, assignExitToReview] = useState({ exits: [], interstate: {} })
+    const [review, update] = useState({
+        foodRating: 0,
+        gasStationRating: 0,
+        bathroomRating: 0,
+        comments: "",
+        rvParking: false,
+        interstateId: 0,
+        exitId: 0
+    })
+
+
+
+    const navigate = useNavigate()
+
+    const localPitStopUser = localStorage.getItem("pitStop_user")
+    const pitStopUserObject = JSON.parse(localPitStopUser)
+
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/exits/${exitId}?_expand=interstate`)
+                .then(response => response.json())
+                .then((data) => {
+                    const singleExit = data
+                    assignExitToReview(singleExit)
+                })
+        },
+        [exitId]
+    )
+
+
+    const handleSaveButtonClick = (event) => {
+        event.preventDefault()
+
+        // TODO: Create the object to be saved to the API
+
+        const reviewToSendToAPI = {
+            id: 0,
+            userId: pitStopUserObject.id,
+            foodRating: review.foodRating,
+            gasStationRating: review.gasStationRating,
+            bathroomRating: review.bathroomRating,
+            comments: review.comments,
+            rvParking: review.rvParking,
+            interstateId: exit.interstateId,
+            exitId: exit.id,
+            dateCompleted: ""
+        }
+
+        return fetch('http://localhost:8088/exitRatings', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(reviewToSendToAPI)
+        })
+            .then(response => response.json())
+            .then(() => {
+                navigate(`/profile/${pitStopUserObject?.id}`)
+            })
+    }
+
+
+    return (<>
+        <form className="reviewForm">
+            {/* i need to grab the names of the specific interstate and exit that are being reviewed */}
+            {/* <h2 className="interstate_name">{interstate.name}</h2> */}
+            {/* <h2 className="exit_name">{exit.name}</h2> */}
+            <label className="exit_review"
+                value={review.interstateId}
+                onChange={
+                    (evt) => {
+                        const copy = { ...review }
+                        copy.interstateId = parseFloat(evt.target.value)
+                        update(copy)
+                    }
+                }>
+                {exit.interstate.name}
+            </label>
+            <label className="exit_review"
+                value={review.exitId}
+                onChange={
+                    (evt) => {
+                        const copy = { ...review }
+                        copy.exitId = parseFloat(evt.target.value)
+                        update(copy)
+                    }
+                }>
+                {exit.name}
+            </label>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="foodRating">Food Rating:</label>
+                    <input
+                        required autoFocus
+                        type="number"
+                        min={0.0}
+                        max={5.0}
+                        step={0.1}
+                        className="form-control"
+                        value={review.foodRating}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...review }
+                                copy.foodRating = parseFloat(evt.target.value, 1)
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="gasStationRating">Gas Station Rating:</label>
+                    <input
+                        required autoFocus
+                        type="number"
+                        min={0.0}
+                        max={5.0}
+                        step={0.1}
+                        className="form-control"
+                        value={review.gasStationRating}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...review }
+                                copy.gasStationRating = parseFloat(evt.target.value, 1)
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="bathroomRating">Bathroom Rating:</label>
+                    <input
+                        required autoFocus
+                        type="number"
+                        min={0.0}
+                        max={5.0}
+                        step={0.1}
+                        className="form-control"
+                        value={review.bathroomRating}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...review }
+                                copy.bathroomRating = parseFloat(evt.target.value, 1)
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description">Comments:</label>
+                    <textarea
+                        required autoFocus
+                        type="text"
+                        style={{
+                            height: "10rem"
+                        }}
+                        className="form-control"
+                        value={review.comments}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...review }
+                                copy.comments = evt.target.value
+                                update(copy)
+                            }
+                        }>
+                    </textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="name">R/V Parking?:</label>
+                    <input type="checkbox"
+                        value={review.rvParking}
+                        onChange={
+                            (evt) => {
+                                const copy = { ...review }
+                                copy.rvParking = evt.target.checked
+                                update(copy)
+                            }
+                        } />
+                </div>
+            </fieldset>
+
+            <button
+                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                className="btn btn-primary">
+                Submit Review
+            </button>
+        </form>
+    </>
+    )
+}
+
+
+

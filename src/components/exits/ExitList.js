@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 
 
+// since i am not going to worry about the search function for now...i can repurpose this for the list of reviews, perhaps.
+// although, maybe it would handle both?
+
 
 export const ExitList = ({ searchTermState }) => {
     const [exits, setExits] = useState([])
