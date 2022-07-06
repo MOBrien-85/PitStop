@@ -1,0 +1,12 @@
+.app_body {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    font-family: "Nunito", sans-serif;
+    background-color: linear-gradient(45deg, #fdfdfd, #5ca8ff);
+    margin-top: 5%;
+    padding-top: 25px;
+    width: 95%;
+    margin-right: 4%;
+  margin-left: 4%;
+}

@@ -64,6 +64,7 @@ MORE STRETCH GOALS:
 
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import "./Reviews.css"
 
 
 export const ReviewForm = () => {
@@ -133,10 +134,8 @@ export const ReviewForm = () => {
 
     return (<>
         <form className="reviewForm">
-            {/* i need to grab the names of the specific interstate and exit that are being reviewed */}
-            {/* <h2 className="interstate_name">{interstate.name}</h2> */}
-            {/* <h2 className="exit_name">{exit.name}</h2> */}
-            <label className="exit_review"
+           <div>           
+            <label className="exit_interstate"
                 value={review.interstateId}
                 onChange={
                     (evt) => {
@@ -147,7 +146,9 @@ export const ReviewForm = () => {
                 }>
                 {exit.interstate.name}
             </label>
-            <label className="exit_review"
+            </div>
+            <div>
+            <label className="exit_exit"
                 value={review.exitId}
                 onChange={
                     (evt) => {
@@ -158,6 +159,7 @@ export const ReviewForm = () => {
                 }>
                 {exit.name}
             </label>
+            </div>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="foodRating">Food Rating:</label>
@@ -166,8 +168,8 @@ export const ReviewForm = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
-                        className="form-control"
+                        step={0.5}
+                        className="rating_input"
                         value={review.foodRating}
                         onChange={
                             (evt) => {
@@ -175,7 +177,7 @@ export const ReviewForm = () => {
                                 copy.foodRating = parseFloat(evt.target.value, 1)
                                 update(copy)
                             }
-                        } />
+                        } /> 
                 </div>
             </fieldset>
             <fieldset>
@@ -186,8 +188,8 @@ export const ReviewForm = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
-                        className="form-control"
+                        step={0.5}
+                        className="rating_input"
                         value={review.gasStationRating}
                         onChange={
                             (evt) => {
@@ -206,8 +208,8 @@ export const ReviewForm = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
-                        className="form-control"
+                        step={0.5}
+                        className="rating_input"
                         value={review.bathroomRating}
                         onChange={
                             (evt) => {
@@ -256,8 +258,8 @@ export const ReviewForm = () => {
 
             <button
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Submit Review
+                className="submit_button">
+                Submit
             </button>
         </form>
     </>

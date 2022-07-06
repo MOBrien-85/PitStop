@@ -1,71 +1,44 @@
-.h1, h1 {
-    font-size: 2.5rem;
-}
-
-fieldset {
+.user_profile {
+    appearance: none;
+    background-color: transparent;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 5%;
+    min-height: 60px;
     min-width: 0;
-    padding: 1rem 0;
-    margin: 0;
-    border: 0;
-}
-
-.form--login {
-    display: inline-block;
-    margin: 0 auto;
+    outline: none;
+    padding: 16px 24px;
+    padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, .75) 0 4px 18px;
     text-align: left;
-    
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 50%;
+    will-change: transform;
 }
 
-.form--login > fieldset > input[type="email"] {
-    width: 25em;
-    
-}
-
-.label--login {
-    width: 8rem;
-    display: inline-block;
-}
-
-.form-control {
-    display: block;
-    width: 75%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-.container--login {
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10em;
-    text-align: center;
-}
-
-.login_box {
-    
+.profile_update {
     appearance: none;
     background-color: transparent;
     border: 2px solid #1A1A1A;
     border-radius: 15px;
     box-sizing: border-box;
     color: #3B3B3B;
-    cursor: pointer;
     display: inline-block;
     font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
-    margin: 4px;
+    margin-top: 5%;
     min-height: 60px;
     min-width: 0;
     outline: none;
@@ -82,54 +55,33 @@ fieldset {
     will-change: transform;
 }
 
-/* .form--login {
-    background-position-x: right;
-    z-index: 1;
-    min-height: 25rem;
-    min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
-} */
-
-.button--close {
-    position: relative;
-    bottom: -2rem;
-}
-
-.logo {
-    width: 10rem;
-    height: 80px;
-    
+.divider {
+    margin-top: 10%;
 }
 
 
+.user_name {
+    /* padding-bottom: 0.5rem; */
 
-.login_email {
-    background: transparent;
-    border: 1px solid #d5d9d9;
-    border-radius: 8px;
-    box-shadow: rgba(213, 217, 217, .5) 0 4px 10px 0;
-    box-sizing: border-box;
-    color: black;
-    border-color: #526bfa;
-    cursor: pointer;
-    /* display: inline-block; */
-    font-family: "Amazon Ember", sans-serif;
-    font-size: 13px;
-    line-height: 29px;
-    padding: 0 10px 0 11px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-    width: 100px;
-    margin: .25em;
 }
-.submit {
+
+.user_location {
+    font-size: small;
+    font-style: italic;
+}
+
+.user_destination {
+    font-size: small;
+}
+
+.user_email {
+    display: inline;
+    font-size: small;
+    margin-right: 20px;
+    letter-spacing: 1px;
+}
+
+.update_profile {
     background: transparent;
     border: 1px solid #d5d9d9;
     border-radius: 8px;
@@ -137,8 +89,8 @@ fieldset {
     box-sizing: border-box;
     color: #526bfa;
     border-color: #526bfa;
-    cursor: pointer;
     display: inline-block;
+    cursor: pointer;
     font-family: "Amazon Ember", sans-serif;
     font-size: 13px;
     line-height: 29px;
@@ -154,16 +106,55 @@ fieldset {
     margin: .25em;
 }
 
-.submit:disabled {
+.update_profile:disabled {
     pointer-events: none;
 }
 
-.submit:hover {
+.update_profile:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 12px 20px;
     transform: translateY(-1px);
 }
 
-.submit:active {
+.update_profile:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.save_profile {
+    background: transparent;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, .5) 0 4px 10px 0;
+    box-sizing: border-box;
+    color: #526bfa;
+    border-color: #526bfa;
+    display: inline-block;
+    cursor: pointer;
+    font-family: "Amazon Ember", sans-serif;
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0 10px 0 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: 100px;
+    margin: .25em;
+}
+
+.save_profile:disabled {
+    pointer-events: none;
+}
+
+.save_profile:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 12px 20px;
+    transform: translateY(-1px);
+}
+
+.save_profile:active {
     box-shadow: none;
     transform: translateY(0);
 }

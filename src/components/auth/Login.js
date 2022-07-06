@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
+import { Header } from "../nav/Header"
 import "./Login.css"
 
 export const Login = () => {
-    const [email, set] = useState("homerjsimpson@springfieldnuclear.net")
+    const [email, set] = useState("")
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -29,12 +30,12 @@ export const Login = () => {
 
     return (
         <main className="container--login">
-            <section>
+            <div className="login_logo"> <Header /></div>
+            <h2>The best stop along the way.</h2>
+            <section className="login-box">
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>PitStop</h1>
-                    <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail"></label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
@@ -43,14 +44,14 @@ export const Login = () => {
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
-                            Sign in
+                        <button type="submit" className="submit">
+                            Log In
                         </button>
                     </fieldset>
                 </form>
-            </section>
-            <section className="link--register">
+            <div className="link--register">
                 <Link to="/register">Not a member yet?</Link>
+            </div>
             </section>
         </main>
     )

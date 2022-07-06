@@ -6,6 +6,8 @@ export const Register = (props) => {
     const [customer, setCustomer] = useState({
         name: "",
         email: "",
+        location: "",
+        favoriteDestination: ""
     })
     let navigate = useNavigate()
 
@@ -58,7 +60,7 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="name"> Full Name </label>
                     <input onChange={updateCustomer}
-                           type="text" id="fullName" className="form-control"
+                           type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
@@ -68,7 +70,19 @@ export const Register = (props) => {
                         placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <label htmlFor="location"> Location </label>
+                    <input onChange={updateCustomer}
+                        type="location" id="location" className="form-control"
+                        placeholder="Location" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="favoriteDestination"> Favorite Destination </label>
+                    <input onChange={updateCustomer}
+                        type="favoriteDestination" id="favoriteDestination" className="form-control"
+                        placeholder="Favorite Destination" required />
+                </fieldset>
+                <fieldset>
+                    <button type="submit" className="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

@@ -53,7 +53,7 @@ export const ReviewEdit = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
+                        step={0.5}
                         className="form-control"
                         value={review.foodRating}
                         onChange={
@@ -73,7 +73,7 @@ export const ReviewEdit = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
+                        step={0.5}
                         className="form-control"
                         value={review.gasStationRating}
                         onChange={
@@ -93,7 +93,7 @@ export const ReviewEdit = () => {
                         type="number"
                         min={0.0}
                         max={5.0}
-                        step={0.1}
+                        step={0.5}
                         className="form-control"
                         value={review.bathroomRating}
                         onChange={
@@ -143,8 +143,8 @@ export const ReviewEdit = () => {
 
             <button
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Save Changes
+                className="review_save">
+                Save
             </button>
         </form>
     </>

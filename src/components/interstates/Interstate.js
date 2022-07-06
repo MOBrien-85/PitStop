@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom"
+import { InterstateSheild } from './InterstateSheild'
 import "./Interstates.css"
-import shield from'./interstateshield.jpg';
 
 export const Interstate = ({ id, name }) => {
     return <section className="interstate">
-        <figure>
-            {/* <img src={shield}/> */}
-            <figcaption>
-                <Link to={`/interstates/${id}`}>{name}</Link>
+        <figure className="interstate_sheild">
+                <InterstateSheild />
+            <figcaption className="I_text" >
+                {name}
             </figcaption>
+            <div className="link_arrow"><Link to={`/interstates/${id}`}>Go</Link></div>
         </figure>
     </section>
 }

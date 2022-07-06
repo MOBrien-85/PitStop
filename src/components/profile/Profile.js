@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { UserRating } from "../reviews/UserRating"
 import { getCurrentUserFetch, getUserReviewsFetch } from "../ApiManager"
+import './Profile.css'
 import "../reviews/Reviews.css"
 
 
@@ -25,56 +26,44 @@ export const Profile = () => {
         []
     )
 
-    // *****06.22*****
-    // function to find average of overall rating
-
-    
-
-    // const ratingSystem = (avg) => {
-
-    //     if (avg >= 0.0 && avg <= 1.5) {
-    //         document.getElementsByClassName("circle").style.backgroundColor = '#ff0000';
-    //     }
-    //     else if (avg >= 1.6 && avg <= 2.5) {
-    //         document.getElementsByClassName("circle").style.backgroundColor = '#ff9900';
-    //     }
-    //     else if (avg >= 2.6 && avg <= 3.5) {
-    //         document.getElementsByClassName("circle").style.backgroundColor = '#ffee00';
-    //     }
-    //     else if (avg >= 3.6 && avg <= 5.0) {
-    //         document.getElementsByClassName("circle").style.backgroundColor = '#00ff00';
-    //     }
-    // }
-
-
+    const getUserReviews = () => {
+        fetch(`http://localhost:8088/exitRatings?userId=${pitStopUserObject.id}&_expand=exit&_expand=interstate`)
+            .then(response => response.json())
+            .then((ratingArray) => {
+                setRatings(ratingArray)
+            })
+    }
 
     return <>
-        <h2>{currentUser.name}'s Profile</h2>
-        <p>Name: {currentUser.name}</p>
-        <p>Email: {currentUser.email}</p>
+    {/* potentially a div here for a profile picture */}
+    <section className="user_profile">
+        <h2 className="user_name">{currentUser.name}</h2>
+        <p className="user_location">{currentUser.location}</p>
+        <hr />
+        <p className="user_email">Email: {currentUser.email}</p>
+        <p className="user_destination">Favorite Destination: {currentUser.favoriteDestination}</p>
 
-        <button onClick={
+        <button className="update_profile" onClick={
             () => {
                 navigate(`/profile/${currentUser.id}/update`)
             }
-        }>Update Profile</button>
+        }>Update</button>
+    </section>
+
+{/* <hr className="divider"/> */}
 
 
-        <h2>{currentUser.name}'s Reviews</h2>
+        <h2 className="userReviews_header">{currentUser.name}'s Reviews</h2>
 
         <article className="user_ratings">
-            {/* {
-                findAverageRating()
-            } */}
-            {/* {
-                ratingSystem(findAverageRating())
-            } */}
             {
                 ratings.map(
-                    (rating) => <UserRating 
-                    key={`rating--${rating.id}`}
-                    ratingObject={rating} 
-                    currentUser={currentUser}
+                    (rating) => <UserRating
+                        isUser={pitStopUserObject.id}
+                        key={`rating--${rating.id}`}
+                        ratingObject={rating}
+                        currentUser={currentUser}
+                        getUserReviews={getUserReviews}
                     />
                 )
             }

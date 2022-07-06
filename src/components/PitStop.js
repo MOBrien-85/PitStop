@@ -6,6 +6,8 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./PitStop.css"
 
+
+
 export const PitStop = () => {
 	return <Routes>
 		<Route path="/login" element={<Login />} />
@@ -15,7 +17,9 @@ export const PitStop = () => {
 			<Authorized>
 				<>
 					<NavBar />
+					
 					<ApplicationViews />
+					
 				</>
 			</Authorized>
 

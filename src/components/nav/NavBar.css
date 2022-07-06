@@ -2,14 +2,42 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: white;
+    position: sticky;
+    z-index: 1;
+    width: 97%;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-right: 4%;
+    border:none;
+    box-shadow: 0 20px 20px -20px #333;
+    float: left;
 }
 
 .navbar__item {
-    flex-basis: 20%;
+    /* flex-basis: 20%; */
     list-style-type: none;
+    /* padding-left: 35px; */
+    padding-right: 35px;
+    font-family:  "Nunito", sans-serif;
+    font-size: larger;  
 }
+
+.navbar_link {
+    margin-top: 15em;
+    border-right: 1px solid #d5d9d9;
+    border-left: 1px solid #d5d9d9;
+    border-radius: 8px;
+}
+
 
 .navbar__logout {
     margin-left: auto;
 }
 
+.logo {
+    width: 10rem;
+    height: 80px;
+    
+}

@@ -12,6 +12,10 @@ export const getUserReviewsFetch = (pitStopUserObject) => {
             .then(response => response.json())
 }
 
+export const getAllInterstatesFetch = () => {
+        return fetch(`http://localhost:8088/interstates`)
+        .then(response => response.json())
+}
 
 
 

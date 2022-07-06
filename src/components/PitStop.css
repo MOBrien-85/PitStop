@@ -1,26 +1,42 @@
 /* Import the google web fonts you want to use */
-@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 
 /*Typography
 --------------------------------------------------------------*/
-body,
+body {
+  /* height: 125vh;
+  background-color: darkgrey;
+  margin-top: 80px;
+    padding: 30px; */
+
+  
+  /* display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+  background-color: linear-gradient(45deg, #fdfdfd, #5ca8ff);
+  margin-right: 2%;
+  margin-left: 2%;
+  padding: 30px; */
+  
+}
+
+
 button,
 input,
 select,
 textarea {
   color: #404040;
-  font-family: "Comfortaa", Arial, sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
   line-height: 1.5;
 }
 
-body {
-    padding: 0 3rem;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Patua One", serif;
-  letter-spacing: 2px;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 1px;
 }
 
 p {

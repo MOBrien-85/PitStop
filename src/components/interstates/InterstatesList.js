@@ -13,9 +13,11 @@ import { Interstate } from "./Interstate"
 import { useEffect, useState } from "react"
 import "./Interstates.css"
 
-export const InterstatesList = () => {
-    const [interstates, setInterstates] = useState([])
 
+export const InterstatesList = ( {searchTermState} ) => {
+    const [interstates, setInterstates] = useState([])
+    const [filteredInterstates, setFiltered] = useState([])
+    
     useEffect(
         () => {
             fetch(`http://localhost:8088/interstates`)
@@ -26,14 +28,42 @@ export const InterstatesList = () => {
         },
         []
     )
-// i need a clickevent here for each interstate. if the user clicks on say I-65 the function knows
-// to route the user to the I-65 "interstatePage"
-    return <article className="interstates">
+
+    useEffect(
+        () => {
+            setFiltered(interstates)
+        },
+        [interstates]
+    )
+
+    useEffect(
+        () => {
+            const searchedInterstates = interstates.filter(interstate => interstate.name.includes(searchTermState))
+            setFiltered(searchedInterstates)
+        },
+        [searchTermState]
+    )
+
+   
+
+
+
+    return <>   
+    {/* JSX for filter drop downs, checkboxes...whatever else i need...i may style this as a side menu like yelp */}
+    <section className="interstate_list">
+    <div className="interstate_title">
+    Interstates
+    </div>
+    <article className="interstates">
         {
-            interstates.map(interstate => <Interstate key={`interstate--${interstate.id}`}
+            filteredInterstates.map(
+                (interstate) => <Interstate key={`interstate--${interstate.id}`}
                 id={interstate.id}
                 name={interstate.name} />)
                 // potentially add beginning and ending keys for each interstate
         }        
+    
     </article>
+    </section>
+    </>
 }
